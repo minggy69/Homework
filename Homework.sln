@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HomeWork", "HomeWork", "{7ABF1509-AAF4-4DE1-B68A-5A38182B95EC}"
+	ProjectSection(SolutionItems) = preProject
+		media\Homework220207.png = media\Homework220207.png
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HomeWork220112", "HomeWork220112\HomeWork220112.vcxproj", "{1552FBA9-7060-4F60-9B85-2728080FA119}"
 EndProject
