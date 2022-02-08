@@ -11,22 +11,18 @@
 class MyInt
 {
 public:
-    MyInt()
-        : Value()
-    {
-    }
-public:
-    MyInt()
-        : _Result()
-    {
-    }
-public:
     int Value;
-
 public:
-    MyInt& operator+= (const MyInt& _Value);
+    MyInt operator++(int)
+    {
+        MyInt ReturnValue = Value;
+        Value += 1;
+        return ReturnValue;
+    }
+
+    MyInt& operator++ ();
     (
-       _Result = Value += 1;
+       Value += 1;
        return *this;
     }
 };
