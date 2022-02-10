@@ -1,6 +1,8 @@
 #include "Player.h"
 #include <conio.h>
 #include "ConsoleGlobalInst.h"
+#include <stdio.h>
+#include <cstdlib>
 
 Player::Player(TextScreen* _Screen, const char* _Text)
 	: ConsoleObject(_Screen, _Text, _Screen->GetSize().GetHalfVector())
@@ -45,11 +47,11 @@ void Player::Update()
 	case 'Q':
 		// 무슨일인가가 벌어져서
 		// 게임이 종료된다.
-		break;
+		exit(1);
 	default:
 		break;
 	}
-	
+
 
 }
 

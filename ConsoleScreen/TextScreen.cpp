@@ -94,22 +94,22 @@ void TextScreen::SetPixel(int _X, int _Y, const char* _DefaultValue)
 {
 	if (0 > _X)
 	{
-		assert(false);
+		++_X;
 	}
 
 	if (0 > _Y)
 	{
-		assert(false);
+		++_Y;
 	}
 
 	if (Size_.x_ <= _X)
 	{
-		assert(false);
+		--_X;
 	}
 
 	if (Size_.y_ <= _Y)
 	{
-		assert(false);
+		--_Y;
 	}
 
 	// 기본자료형을 사용한 함수에 진짜 내용을 놓고
