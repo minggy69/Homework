@@ -1,0 +1,20 @@
+1. 내가 뭔가 뭔가 모르는게 생겼어
+   인터넷검색을시작한다.
+
+   어디부터 봐야하느냐?
+
+1. cpp포럼 en.cppreference.com
+2. msdn MicroSoft Developer Network(MSDN). Microsoft
+3. 스택오버플로
+
+// 1980
+// 정말정말 실력자들
+// msdn MicroSoft Developer Network 파워유저
+// 그 사람들 블로그 위주로 봅니다.
+
+4. 선생님
+
+5. 복불복
+   오늘도 개발자. 블로그
+   낚시하는 개발자.
+   내일은 게임을 만들거야.
