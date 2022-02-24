@@ -94,7 +94,7 @@ private:
             // 내가 해야할일
             std::cout << Pair_.first << std::endl;
         }
-
+        
 
         // 내보다 큰 부모를 찾는 함수
         MapNode* OverParent(const KeyType& _Key)
@@ -194,6 +194,7 @@ private:
                 }
 
                 return LeftChild_->Insert(_Pair);
+                delete LeftChild_;
             }
             // 내 값이 더 작다.
             else if (Pair_.first < _Pair.first)
@@ -208,6 +209,7 @@ private:
                 }
 
                 return RightChild_->Insert(_Pair);
+                delete RightChild_;
             }
 
             return false;
@@ -332,7 +334,7 @@ public:
 int main()
 {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-    //_crtBreakAlloc = 204;
+   // _CrtSetBreakAlloc(201);
     {
         std::map<int, int> StdMap;
         // 같은 값은 무시되므로 값형으로 넣어줄때는 크게 신경쓸 필요가 없다.
