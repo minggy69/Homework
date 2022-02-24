@@ -356,7 +356,7 @@ int main()
 
     {
         GameMap GMap;
-        //5부터 메모리 누수
+        //5부터 메모리 누수 수정해야됨
         GMap.insert(make_gamePair(10, 10));
         GMap.insert(make_gamePair(10, 1));
         GMap.insert(make_gamePair(10, 2));
