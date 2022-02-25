@@ -85,11 +85,11 @@ private:
         {
             if (nullptr != LeftChild_)
             {
-                LeftChild_->MidOrder();
+                LeftChild_->LastOrder();
             }
             if (nullptr != RightChild_)
             {
-                RightChild_->MidOrder();
+                RightChild_->LastOrder();
             }
             // 내가 해야할일
             std::cout << Pair_.first << std::endl;
