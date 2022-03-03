@@ -32,6 +32,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Snake", "Snake\Snake.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HomeWork220222Vector", "20220222Vector\20220222Vector.vcxproj", "{4A1D6D05-86D6-4AEB-A5C9-1C524DF4B0B6}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WindowsProject1", "WindowsProject1\WindowsProject1.vcxproj", "{75934691-5271-4A29-8E12-010B3EE49475}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -186,6 +188,18 @@ Global
 		{4A1D6D05-86D6-4AEB-A5C9-1C524DF4B0B6}.Release|x64.Build.0 = Release|x64
 		{4A1D6D05-86D6-4AEB-A5C9-1C524DF4B0B6}.Release|x86.ActiveCfg = Release|Win32
 		{4A1D6D05-86D6-4AEB-A5C9-1C524DF4B0B6}.Release|x86.Build.0 = Release|Win32
+		{75934691-5271-4A29-8E12-010B3EE49475}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{75934691-5271-4A29-8E12-010B3EE49475}.Debug|Any CPU.Build.0 = Debug|x64
+		{75934691-5271-4A29-8E12-010B3EE49475}.Debug|x64.ActiveCfg = Debug|x64
+		{75934691-5271-4A29-8E12-010B3EE49475}.Debug|x64.Build.0 = Debug|x64
+		{75934691-5271-4A29-8E12-010B3EE49475}.Debug|x86.ActiveCfg = Debug|Win32
+		{75934691-5271-4A29-8E12-010B3EE49475}.Debug|x86.Build.0 = Debug|Win32
+		{75934691-5271-4A29-8E12-010B3EE49475}.Release|Any CPU.ActiveCfg = Release|x64
+		{75934691-5271-4A29-8E12-010B3EE49475}.Release|Any CPU.Build.0 = Release|x64
+		{75934691-5271-4A29-8E12-010B3EE49475}.Release|x64.ActiveCfg = Release|x64
+		{75934691-5271-4A29-8E12-010B3EE49475}.Release|x64.Build.0 = Release|x64
+		{75934691-5271-4A29-8E12-010B3EE49475}.Release|x86.ActiveCfg = Release|Win32
+		{75934691-5271-4A29-8E12-010B3EE49475}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
