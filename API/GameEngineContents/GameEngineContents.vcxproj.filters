@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Ending">
+      <UniqueIdentifier>{e80a4c8b-c8c0-40c7-ae80-4f56eed4ff50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level">
+      <UniqueIdentifier>{a180e0a9-c7c8-4942-be77-eb79f811640d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Title">
+      <UniqueIdentifier>{f20c8bc1-536b-47f7-b56b-50cd7e04dd33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Play">
+      <UniqueIdentifier>{c494e65a-f2ce-4597-ac12-068f4543a60c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="EndingCredit.h">
+      <Filter>Ending</Filter>
+    </ClInclude>
+    <ClInclude Include="EndingLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Puyopuyo2.h" />
+    <ClInclude Include="Puyo.h">
+      <Filter>Play</Filter>
+    </ClInclude>
+    <ClInclude Include="Cursor.h">
+      <Filter>Play</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleLogo.h">
+      <Filter>Title</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="EndingCredit.cpp">
+      <Filter>Ending</Filter>
+    </ClCompile>
+    <ClCompile Include="EndingLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Puyopuyo2.cpp" />
+    <ClCompile Include="Puyo.cpp">
+      <Filter>Play</Filter>
+    </ClCompile>
+    <ClCompile Include="Cursor.cpp">
+      <Filter>Play</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleLogo.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
