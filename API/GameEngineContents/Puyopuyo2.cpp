@@ -16,6 +16,7 @@ void Puyopuyo2::GameInit()
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<PlayLevel>("Play");
 	CreateLevel<EndingLevel>("Ending");
+	ChangeLevel("Title");
 }
 
 void Puyopuyo2::GameLoop()

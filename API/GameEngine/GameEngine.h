@@ -1,6 +1,7 @@
 #pragma once
 #include <map>
 #include <string>
+#include <GameEngineBase/GameEngineDebug.h>
 
 // 게임엔진이란 게임 그 자체의 시작점과 끝점 실행중을 담당하는 녀석이다.
 // 설명 :
@@ -24,6 +25,29 @@ public:
 	virtual void GameLoop() = 0;
 	virtual void GameEnd() = 0;
 
+	template<typename GameType>
+	static void Start()
+	{
+		GameEngineDebug::LeakCheckOn();
+
+		GameType UserGame;
+		UserContents_ = &UserGame;
+
+		WindowCreate();
+		EngineEnd();
+	}
+
+	static GameEngine& GlobalEngine()
+	{
+		if (nullptr == UserContents_)
+		{
+			MsgBoxAssert("Gengine ERROR Engine Is Not Start ");
+		}
+
+		return *UserContents_;
+	}
+
+	void ChangeLevel(const std::string& _Name);
 
 protected:
 	template<typename LevelType>
@@ -36,6 +60,16 @@ protected:
 	}
 
 private:
-	std::map<std::string, GameEngineLevel*> AllLevel_;
+	static std::map<std::string, GameEngineLevel*> AllLevel_;
+	static GameEngineLevel* CurrentLevel_;
+	static GameEngineLevel* NextLevel_;
+	static GameEngine* UserContents_;
+
+	static void WindowCreate();
+	static void EngineInit();
+	static void EngineLoop();
+	static void EngineEnd();
+
+
 };
 

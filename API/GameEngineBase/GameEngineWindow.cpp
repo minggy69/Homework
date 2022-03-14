@@ -6,13 +6,13 @@ LRESULT CALLBACK MessageProcess(HWND hWnd, UINT message, WPARAM wParam, LPARAM l
     switch (message)
     {
     case WM_DESTROY:
-        GameEngineWindow::GetInst().OFF();
+        GameEngineWindow::GetInst().Off();
         return DefWindowProc(hWnd, message, wParam, lParam);
     case WM_PAINT:
     {
         PAINTSTRUCT ps;
         HDC hdc = BeginPaint(hWnd, &ps);
-        EnddPaint(hWnd, &ps);
+        EndPaint(hWnd, &ps);
         return DefWindowProc(hWnd, message, wParam, lParam);
     }
     default:
@@ -32,13 +32,9 @@ GameEngineWindow::GameEngineWindow()
 {
 }
 
-GameEngineWindow::~GameEngineWindow() 
+GameEngineWindow::~GameEngineWindow()
 {
-}
-
-GameEgineWindow::~GameEngineWindow()
-{
-    //내가 만들어준게 아니라면 다 지워줘야 한다.
+    // 내가 만들어준게 아니라면 다 지워줘야 합니다.
     if (nullptr != HDC_)
     {
         ReleaseDC(hWnd_, HDC_);

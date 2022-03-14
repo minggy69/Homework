@@ -2,13 +2,15 @@
 #include "GameEngineBase/GameEngineNameObject.h"
 
 // 설명 :
+class GameEngine;
 class GameEngineLevel : public GameEngineNameObject
 {
+	friend GameEngine;
 public:
 	// constrcuter destructer
 	GameEngineLevel();
 
-	//virtual 붙이는 이유 중요!
+	//virtual 붙이는 이유 중요! 상속받은놈 소멸자를 사용하기위해
 	virtual ~GameEngineLevel();
 
 	// delete Function
@@ -19,6 +21,9 @@ public:
 
 protected:
 	virtual void Loading() = 0;
+
+	//레벨수준의 업데이트
+	virtual void Update() = 0;
 
 private:
 	template<typename ActorType>
