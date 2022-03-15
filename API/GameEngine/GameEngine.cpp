@@ -50,11 +50,24 @@ void GameEngine::EngineLoop()
 	//엔진수준에서 매 프레임마다 체크하고 싶은거
 	UserContents_->GameLoop();
 
+	//시점함수
 	if (nullptr != NextLevel_)
 	{
+		if (nullptr != CurrentLevel_)
+		{
+			CurrentLevel_->SceneChangeEnd();
+		}
+
 		CurrentLevel_ = NextLevel_;
+
+		if (nullptr != CurrentLevel_)
+		{
+			CurrentLevel_->SceneChangeStart();
+		}
+
 		NextLevel_ = nullptr;
 	}
+
 
 	if (nullptr == CurrentLevel_)
 	{
@@ -63,6 +76,8 @@ void GameEngine::EngineLoop()
 
 	//레벨 수준에서 시간제한이 있는 게임이라면 매프레임마다 시간을 체크해야하는데 그런일을
 	CurrentLevel_->Update();
+	CurrentLevel_->ActorUpdate();
+	CurrentLevel_->ActorRender();
 
 }
 

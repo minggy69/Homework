@@ -73,3 +73,9 @@ private:
 
 };
 
+//class IGameEngieInstance
+//{
+//	virtual void GameInit() = 0;
+//	virtual void GameLoop() = 0;
+//	virtual void GameEnd() = 0;
+//};

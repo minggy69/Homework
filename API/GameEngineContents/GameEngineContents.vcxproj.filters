@@ -37,6 +37,9 @@
     <ClInclude Include="TitleLogo.h">
       <Filter>Title</Filter>
     </ClInclude>
+    <ClInclude Include="TitleBackGround.h">
+      <Filter>Title</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EndingCredit.cpp">
@@ -59,6 +62,9 @@
       <Filter>Play</Filter>
     </ClCompile>
     <ClCompile Include="TitleLogo.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleBackGround.cpp">
       <Filter>Title</Filter>
     </ClCompile>
   </ItemGroup>
