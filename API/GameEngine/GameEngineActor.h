@@ -19,6 +19,25 @@ public:
 	GameEngineActor& operator=(const GameEngineActor& _Other) = delete;
 	GameEngineActor& operator=(GameEngineActor&& _Other) noexcept = delete;
 
+	inline float4 GetPosition()
+	{
+		return Position_;
+	}
+	inline float4 GetScale()
+	{
+		return Scale_;
+	}
+
+	inline void SetPosition(float4 _Value)
+	{
+		Position_ = _Value;
+	}
+	inline void SetScale(float4 _Value)
+	{
+		Scale_ = _Value;
+	}
+
+
 protected:
 	//시작할때 뭔가를 하고싶은데 생성자에서는 절대로 못할 부분들을 처리
 	virtual void Start() = 0;
@@ -31,6 +50,8 @@ protected:
 	{
 	}
 
+	void DebugRectRender();
+
 private:
 	GameEngineLevel* Level_;
 	float4 Positon_;
@@ -41,7 +62,6 @@ private:
 	{
 		Level_ = _Level;
 	}
-
 
 
 };

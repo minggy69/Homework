@@ -32,7 +32,6 @@ void GameEngine::GameEnd()
 }
 
 
-
 void GameEngine::WindowCreate()
 {
 	GameEngineWindow::GetInst().CreatGameWindow(nullptr, "GameWindow");
