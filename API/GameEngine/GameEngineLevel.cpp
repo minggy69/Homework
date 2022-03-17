@@ -21,7 +21,7 @@ GameEngineLevel::~GameEngineLevel()
 		{
 			if (nullptr == (*StartActor))
 			{
-				continue
+				continue;
 			}
 			delete (*StartActor);
 			(*StartActor) = nullptr;

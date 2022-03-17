@@ -54,7 +54,7 @@ protected:
 
 private:
 	GameEngineLevel* Level_;
-	float4 Positon_;
+	float4 Position_;
 	float4 Scale_;
 
 	//나를 만들어준 레벨이야
