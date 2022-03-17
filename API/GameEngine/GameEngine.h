@@ -55,7 +55,8 @@ protected:
 	{
 		LevelType* NewLevel = new LevelType();
 		NewLevel->SetName(_Name);
-		NewLevel->Loading();
+		GameEngineLevel* Level = NewLevel;
+		Level->Loading();
 		AllLevel_.insert(std::make_pair(_Name, NewLevel));
 	}
 
