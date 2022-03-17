@@ -26,7 +26,7 @@ public:
 
 public:
 	void RegClass(HINSTANCE _hInst);
-	void CreatGameWindow(HINSTANCE _hInst, const std::string& _Title);
+	void CreateGameWindow(HINSTANCE _hInst, const std::string& _Title);
 	void ShowGameWindow();
 	void MessageLoop(void(*_InitFunction)(), void(*_LoopFunction)());
 
@@ -36,13 +36,16 @@ public:
 
 	static inline HDC GetHDC()
 	{
-		return Inst_-> HDC_;
+		return Inst_->HDC_;
 	}
 
 	static inline float4 GetScale()
 	{
 		return Inst_->Scale_;
 	}
+
+
+protected:
 
 private:
 	std::string Title_;

@@ -29,9 +29,9 @@ protected:
 	//이 레벨이 현재 레벨일때 해야할일을 실행한다.
 	virtual void Update() = 0;
 	// Current레벨 => Next레벨로 이전할때 현재 레벨이 실행하는 함수.
-	virtual void SceneChangeStart() {}
+	virtual void LevelChangeStart() {}
 	// Current레벨 => Next레벨로 이전할때 이전 레벨이 실행하는 함수.
-	virtual void SceneChangeEnd() {}
+	virtual void LevelChangeEnd() {}
 
 	template<typename ActorType>
 		ActorType* CreateActor(const std::string& _Name, int _Order)
