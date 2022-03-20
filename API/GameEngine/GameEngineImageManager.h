@@ -28,6 +28,10 @@ public:
 		Inst_ = nullptr;
 	}
 
+	GameEngineImageManager* Crearte(const std::string& _Name, float4 _Scale);
+
+	GameEngineImageManager* Crearte(const std::string& _Name, HDC _DC);
+
 public:
 	// constrcuter destructer
 	GameEngineImageManager();
