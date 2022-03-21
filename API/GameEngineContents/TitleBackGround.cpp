@@ -1,19 +1,19 @@
 #include "TitleBackGround.h"
 #include <GameEngineBase/GameEngineWindow.h>
 
-TitleBackGround::TitleBackGround() 
+TitleBackGround::TitleBackGround()
 {
-	//Level_ = nullptr;
+	// Level_ = nullptr;
 }
 
-TitleBackGround::~TitleBackGround() 
+TitleBackGround::~TitleBackGround()
 {
 }
 
 void TitleBackGround::Start()
 {
 	SetPosition(GameEngineWindow::GetScale().Half());
-	SetScale(GameEngineWindow::GetScale().Half());
+	SetScale(GameEngineWindow::GetScale());
 }
 
 void TitleBackGround::Render()

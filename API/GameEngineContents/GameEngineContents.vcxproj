@@ -159,6 +159,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BotUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Cursor.h">
       <SubType>
       </SubType>
@@ -168,6 +172,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="EndingLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Player.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -197,6 +205,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BotUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Cursor.cpp">
       <SubType>
       </SubType>
@@ -206,6 +218,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="EndingLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
       <SubType>
       </SubType>
     </ClCompile>

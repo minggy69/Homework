@@ -1,10 +1,20 @@
 #include "PlayLevel.h"
+#include "Player.h"
+#include "BotUI.h"
 
-PlayLevel::PlayLevel() 
+enum class ORDER
+{
+	BACKGROUND,
+	PLAYER,
+	MONSTER,
+	UI
+};
+
+PlayLevel::PlayLevel()
 {
 }
 
-PlayLevel::~PlayLevel() 
+PlayLevel::~PlayLevel()
 {
 }
 
@@ -17,8 +27,8 @@ void PlayLevel::Update()
 {
 
 }
-
 void PlayLevel::LevelChangeStart()
 {
-	int a = 0;
+	CreateActor<Player>("Player", (int)ORDER::PLAYER);
+	CreateActor<BotUI>("BotUI", (int)ORDER::UI);
 }

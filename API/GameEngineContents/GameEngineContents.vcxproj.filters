@@ -13,6 +13,9 @@
     <Filter Include="Play">
       <UniqueIdentifier>{c494e65a-f2ce-4597-ac12-068f4543a60c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Play\Global">
+      <UniqueIdentifier>{85c63044-6857-4b82-b306-3381e7e68c7e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingCredit.h">
@@ -40,6 +43,12 @@
     <ClInclude Include="TitleBackGround.h">
       <Filter>Title</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Play\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="BotUI.h">
+      <Filter>Play\Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EndingCredit.cpp">
@@ -66,6 +75,12 @@
     </ClCompile>
     <ClCompile Include="TitleBackGround.cpp">
       <Filter>Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Play\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="BotUI.cpp">
+      <Filter>Play\Global</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

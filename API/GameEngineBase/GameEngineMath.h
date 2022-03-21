@@ -3,7 +3,7 @@
 // Ό³Έν :
 class GameEngineMath
 {
-public:
+private:
 	// constrcuter destructer
 	GameEngineMath();
 	~GameEngineMath();
@@ -29,55 +29,60 @@ public:
 	float w;
 
 public:
-	bool IsZero2D()
+	bool IsZero2D() const
 	{
 		return x == 0.0f && y == 0.0f;
 	}
 
 public:
-	int ix()
+	int ix() const
 	{
 		return static_cast<int>(x);
 	}
 
-	int iy()
+	int iy() const
 	{
 		return static_cast<int>(y);
 	}
 
-	int iz()
+	int iz() const
 	{
 		return static_cast<int>(z);
 	}
 
-	int iw()
+	int iw() const
 	{
 		return static_cast<int>(w);
 	}
 
-	int hix()
+	int hix() const
 	{
 		return static_cast<int>(x * 0.5f);
 	}
 
-	int hiy()
+	int hiy() const
 	{
 		return static_cast<int>(y * 0.5f);
 	}
 
-	int hiz()
+	int hiz() const
 	{
 		return static_cast<int>(z * 0.5f);
 	}
 
-	int hiw()
+	float4 Half() const
 	{
-		return static_cast<int>(w * 0.5f);
+		return { x * 0.5f, y * 0.5f , z * 0.5f, 1.0f };
 	}
 
-	float4 Half()
+	float4 operator-(const float4& _Other) const
 	{
-		return { x * 0.5f, y * 0.5f,  z * 0.5f, 1.0f };
+		return { x - _Other.x, y - _Other.y, z - _Other.z, 1.0f };
+	}
+
+	float4 operator+(const float4& _Other) const
+	{
+		return { x + _Other.x, y + _Other.y, z + _Other.z, 1.0f };
 	}
 
 public:

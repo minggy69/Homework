@@ -13,6 +13,12 @@
     <Filter Include="Resources\Manager">
       <UniqueIdentifier>{022f3b8d-1482-4f4c-abbf-0312819b001d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Global">
+      <UniqueIdentifier>{f6f58951-3fca-4e41-9529-80fb76aee34c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Actor\SubObject">
+      <UniqueIdentifier>{1cb82184-c170-4d13-9512-15d0c03b8beb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine.h" />
@@ -31,6 +37,12 @@
     <ClInclude Include="GameEngineSound.h">
       <Filter>Resources</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineEnum.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineRenderer.h">
+      <Filter>Object\Actor\SubObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngine.cpp" />
@@ -48,6 +60,9 @@
     </ClCompile>
     <ClCompile Include="GameEngineSound.cpp">
       <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineRenderer.cpp">
+      <Filter>Object\Actor\SubObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
