@@ -19,8 +19,8 @@ void Puyopuyo2::GameInit()
 
 	// 리소스를 다 로드하지 못하는 상황이 올수가 없다.
 
-	GameEngineImageManager::GetInst()->Load("D:\\Project\\AR40\\API\\Resources\\Image\\Idle.bmp", "Idle.bmp");
-	GameEngineImageManager::GetInst()->Load("D:\\Project\\AR40\\API\\Resources\\Image\\HPBAR.Bmp", "HPBAR.Bmp");
+	GameEngineImageManager::GetInst()->Load("C:\\Homework\\API\\Resources\\Image\\Idle.bmp", "Idle.bmp");
+	GameEngineImageManager::GetInst()->Load("C:\\Homework\\API\\Resources\\Image\\HPBAR.Bmp", "HPBAR.Bmp");
 
 
 	CreateLevel<TitleLevel>("Title");
