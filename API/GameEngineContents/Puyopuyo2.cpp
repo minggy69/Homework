@@ -3,6 +3,8 @@
 #include "EndingLevel.h"
 #include "TitleLevel.h"
 #include <GameEngineBase/GameEngineWindow.h>
+#include <GameEngineBase/GameEngineDirectory.h>
+#include <GameEngineBase/GameEngineFile.h>
 #include <GameEngine/GameEngineImageManager.h>
 
 Puyopuyo2::Puyopuyo2()
@@ -17,11 +19,20 @@ void Puyopuyo2::GameInit()
 {
 	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 100, 100 }, { 1280, 720 });
 
-	// 리소스를 다 로드하지 못하는 상황이 올수가 없다.
 
-	GameEngineImageManager::GetInst()->Load("C:\\Homework\\API\\Resources\\Image\\Idle.bmp", "Idle.bmp");
-	GameEngineImageManager::GetInst()->Load("C:\\Homework\\API\\Resources\\Image\\HPBAR.Bmp", "HPBAR.Bmp");
+	// 현재 디렉토리
+	GameEngineDirectory ResourcesDir;
+	ResourcesDir.MoveParent("API");
+	ResourcesDir.Move("Resources");
+	ResourcesDir.Move("Image");
 
+	// 폴더안에 모든 이미지 파일을 찾는다.
+	std::vector<GameEngineFile> AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+
+	for (size_t i = 0; i < AllImageFileList.size(); i++)
+	{
+		GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+	}
 
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<PlayLevel>("Play");

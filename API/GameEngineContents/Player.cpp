@@ -18,18 +18,11 @@ void Player::Start()
 	SetScale({ 100, 100 });
 
 	CreateRenderer("Idle.bmp");
-	// CreateRenderer("HpBar.bmp", RenderPivot::CENTER, {0, -100});
+	CreateRendererToScale("hpbar.bmp", float4(300.0f, 20.0f), RenderPivot::CENTER, float4(0.0f, -100.0f));
 }
 
 // 랜더러가 다 돌아가고 랜더링이 됩니다.
 void Player::Render()
 {
-
-	//GameEngineImage* FindImage = GameEngineImageManager::GetInst()->Find("Idle.bmp");
-	//if (nullptr == FindImage)
-	//{
-	//	MsgBoxAssert("CCCCC!");
-	//}
-	//GameEngine::BackBufferImage()->BitCopyBot(FindImage, GetPosition());
 
 }

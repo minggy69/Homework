@@ -38,6 +38,16 @@ public:
 		ScaleMode_ = _Mode;
 	}
 
+	void SetImageScale();
+
+	inline void SetScale(const float4& _Scale)
+	{
+		ScaleMode_ = RenderScaleMode::User;
+		RenderScale_ = _Scale;
+	}
+
+
+
 
 	void SetImage(const std::string& _Name);
 
