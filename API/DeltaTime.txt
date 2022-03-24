@@ -1,0 +1,48 @@
+같은 게임 같은 캐릭터를 골랐어
+2명의 게임 유저가
+
+A은 컴퓨터가 좋아서
+1초에 2번 실행됩니다.
+
+B은 컴퓨터가 안좋아서
+1초에1번 실행됩니다.
+
+A 1.0f의 스피드를 가졌다면
+// 1초 동안 눌렀다면
+
+A 2번 실행될동안 1을 움직이고
+B 1번 실행될동안 1을 움직이게 만들어야죠?
+
+a는
+SetMove(float4::LEFT * 0.5)
+SetMove(float4::LEFT * 0.5)
+
+b는
+SetMove(float4::LEFT * 1.0)
+
+세가지 Winapi는 이걸 만들기 위한 2가지 함수를 지원하는데.
+
+
+
+// 둘은 모두 알고 있다.
+// 내컴퓨터가 1초에 1000을 버튼을 누를수 있다는것을 
+
+__int64 SecondCount = 1000;
+__int64 CurrentCount = 0;
+__int64 PrevCount = 0;
+
+                              A       B
+                              0,      0
+0.5초                       500      
+
+CurrentCount = 500;
+                     500           0           1000
+float DeltaTime = (CurrentCount - PrevCount) / SecondCount;
+PrevCount = CurrentCount;
+
+1.0초                       1000   1000
+
+CurrentCount = 500;
+                     1000           500           1000
+float DeltaTime = (CurrentCount - PrevCount) / SecondCount;
+PrevCount = CurrentCount;
