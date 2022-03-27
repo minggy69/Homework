@@ -1,146 +1,77 @@
-#include "GameEngineLevel.h"
-#include "GameEngineActor.h"
+#pragma once
+#include "GameEngineBase/GameEngineNameObject.h"
+#include <list>
+#include <map>
 
-GameEngineLevel::GameEngineLevel()
+// 설명 :
+class GameEngine;
+class GameEngineActor;
+class GameEngineLevel : public GameEngineNameObject
 {
-}
+	friend GameEngine;
+public:
+	// constrcuter destructer
+	GameEngineLevel();
 
-GameEngineLevel::~GameEngineLevel()
-{
-	std::map<int, std::list<GameEngineActor*>>::iterator GroupStart = AllActor_.begin();
-	std::map<int, std::list<GameEngineActor*>>::iterator GroupEnd = AllActor_.end();
+	// 면접때 물어보면 알아야 합니다.
+	// 이건 정말 중요하기 때문
+	virtual ~GameEngineLevel();
 
-	for (; GroupStart != GroupEnd; ++GroupStart)
+	// delete Function
+	GameEngineLevel(const GameEngineLevel& _Other) = delete;
+	GameEngineLevel(GameEngineLevel&& _Other) noexcept = delete;
+	GameEngineLevel& operator=(const GameEngineLevel& _Other) = delete;
+	GameEngineLevel& operator=(GameEngineLevel&& _Other) noexcept = delete;
+
+
+	template<typename ActorType>
+	ActorType* CreateActor(int _Order = 0, const std::string& _Name = "")
 	{
-		std::list<GameEngineActor*>& Group = GroupStart->second;
+		ActorType* NewActor = new ActorType();
+		GameEngineActor* StartActor = NewActor;
+		NewActor->SetName(_Name);
+		NewActor->SetLevel(this);
+		StartActor->Start();
+		std::list<GameEngineActor*>& Group = AllActor_[_Order];
+		Group.push_back(NewActor);
 
-		std::list<GameEngineActor*>::iterator StartActor = Group.begin();
-		std::list<GameEngineActor*>::iterator EndActor = Group.end();
+		//// _Order 액터들이 돌아가는 순서를 의미하게 된다.
+		//// insert와 find를 동시에 하게 됩니다.
+		//std::map<int, std::list<GameEngineActor*>>::iterator FindGroup
+		//	= AllActor_.find(_Order);
 
-		for (; StartActor != EndActor; ++StartActor)
-		{
-			if (nullptr == (*StartActor))
-			{
-				continue;
-			}
-			delete (*StartActor);
-			(*StartActor) = nullptr;
-		}
+		//if (FindGroup == AllActor_.end())
+		//{
+
+		//	// AllActor_.insert(std::make_pair(_Order, std::list<GameEngineActor*>()));
+		//	// 이게더 빠릅니다.
+		//	AllActor_.insert(
+		//		std::map<int, std::list<GameEngineActor*>>::value_type(_Order, std::list<GameEngineActor*>())
+		//	);
+		//	FindGroup = AllActor_.find(_Order);
+		//}
+
+		return NewActor;
 	}
 
-}
 
+protected:
+	// 시점함수
+	// 만들어지면서 리소스나 액터를 만들때 써라
+	virtual void Loading() = 0;
+	// 이 레벨이 현재 레벨일때 해야할일을 실행한다.
+	virtual void Update() = 0;
+	// Current레벨 => Next레벨로 이전할때 현재레벨이 실행하는 함수.
+	virtual void LevelChangeStart() {}
+	// Current레벨 => Next레벨로 이전할때 이전레벨이 실행하는 함수.
+	virtual void LevelChangeEnd() {}
 
-void GameEngineLevel::ActorUpdate()
-{
-	std::map<int, std::list<GameEngineActor*>>::iterator GroupStart;
-	std::map<int, std::list<GameEngineActor*>>::iterator GroupEnd;
+private:
+	// std::vector로 관리하는게 더 좋다고 생각합니다.
+	std::map<int, std::list<GameEngineActor*>> AllActor_;
 
-	std::list<GameEngineActor*>::iterator StartActor;
-	std::list<GameEngineActor*>::iterator EndActor;
+	void ActorUpdate();
+	void ActorRender();
+	void ActorRelease();
+};
 
-
-	GroupStart = AllActor_.begin();
-	GroupEnd = AllActor_.end();
-
-	for (; GroupStart != GroupEnd; ++GroupStart)
-	{
-		std::list<GameEngineActor*>& Group = GroupStart->second;
-
-		StartActor = Group.begin();
-		EndActor = Group.end();
-
-		for (; StartActor != EndActor; ++StartActor)
-		{
-			(*StartActor)->ReleaseUpdate();
-			if (false == (*StartActor)->IsUpdate())
-			{
-				continue;
-			}
-
-			(*StartActor)->Update();
-		}
-	}
-}
-
-void GameEngineLevel::ActorRelease()
-{
-	std::map<int, std::list<GameEngineActor*>>::iterator GroupStart;
-	std::map<int, std::list<GameEngineActor*>>::iterator GroupEnd;
-
-	std::list<GameEngineActor*>::iterator StartActor;
-	std::list<GameEngineActor*>::iterator EndActor;
-
-	GroupStart = AllActor_.begin();
-	GroupEnd = AllActor_.end();
-
-	for (; GroupStart != GroupEnd; ++GroupStart)
-	{
-		std::list<GameEngineActor*>& Group = GroupStart->second;
-
-
-		//       
-		// i
-		// 3?????
-		//       i
-		// 0 1 2 4 5 
-		//       d
-		StartActor = Group.begin();
-		EndActor = Group.end();
-		for (; StartActor != EndActor; )
-		{
-			if (true == (*StartActor)->IsDeath())
-			{
-				delete* StartActor;
-				StartActor = Group.erase(StartActor);
-				continue;
-			}
-
-			++StartActor;
-		}
-	}
-}
-void GameEngineLevel::ActorRender()
-{
-	std::map<int, std::list<GameEngineActor*>>::iterator GroupStart;
-	std::map<int, std::list<GameEngineActor*>>::iterator GroupEnd;
-
-	std::list<GameEngineActor*>::iterator StartActor;
-	std::list<GameEngineActor*>::iterator EndActor;
-
-
-	GroupStart = AllActor_.begin();
-	GroupEnd = AllActor_.end();
-
-	for (; GroupStart != GroupEnd; ++GroupStart)
-	{
-		std::list<GameEngineActor*>& Group = GroupStart->second;
-
-		StartActor = Group.begin();
-		EndActor = Group.end();
-
-		for (; StartActor != EndActor; ++StartActor)
-		{
-			if (false == (*StartActor)->IsUpdate())
-			{
-				continue;
-			}
-
-			(*StartActor)->Renderering();
-		}
-
-
-		StartActor = Group.begin();
-		EndActor = Group.end();
-
-		for (; StartActor != EndActor; ++StartActor)
-		{
-			if (false == (*StartActor)->IsUpdate())
-			{
-				continue;
-			}
-
-			(*StartActor)->Render();
-		}
-	}
-}

@@ -1,139 +1,96 @@
-#include "GameEngine.h"
-#include <GameEngineBase/GameEngineWindow.h>
-#include "GameEngineLevel.h"
-#include "GameEngineImageManager.h"
-#include <GameEngineBase/GameEngineInput.h>
-#include <GameEngineBase/GameEngineTime.h>
+#pragma once
+#include <GameEngineBase/GameEngineNameObject.h>
+#include <GameEngineBase/GameEngineUpdateObject.h>
+#include <GameEngineBase/GameEngineMath.h>
+#include "GameEngineEnum.h"
+#include <list>
 
-std::map<std::string, GameEngineLevel*> GameEngine::AllLevel_;
-GameEngineLevel* GameEngine::CurrentLevel_ = nullptr;
-GameEngineLevel* GameEngine::NextLevel_ = nullptr;
-GameEngine* GameEngine::UserContents_ = nullptr;
-GameEngineImage* GameEngine::BackBufferImage_ = nullptr;
-GameEngineImage* GameEngine::WindowMainImage_ = nullptr; // 그려지면 화면에 진짜 나오게 되는 이미지
-
-HDC GameEngine::BackBufferDC()
+// 설명 :
+class GameEngineRenderer;
+class GameEngineLevel;
+class GameEngineActor : public GameEngineNameObject, public GameEngineUpdateObject
 {
-    return BackBufferImage_->ImageDC();
-}
+	//// ActorBase
+public:
+	friend GameEngineLevel;
 
-GameEngine::GameEngine()
-{
-}
+	// constrcuter destructer
+	GameEngineActor();
+	virtual ~GameEngineActor();
 
-GameEngine::~GameEngine()
-{
+	// delete Function
+	GameEngineActor(const GameEngineActor& _Other) = delete;
+	GameEngineActor(GameEngineActor&& _Other) noexcept = delete;
+	GameEngineActor& operator=(const GameEngineActor& _Other) = delete;
+	GameEngineActor& operator=(GameEngineActor&& _Other) noexcept = delete;
 
-}
+	inline GameEngineLevel* GetLevel()
+	{
+		return Level_;
+	}
 
-void GameEngine::GameInit()
-{
-
-}
-
-void GameEngine::GameLoop()
-{
-
-}
-
-void GameEngine::GameEnd()
-{
-
-}
-
-void GameEngine::WindowCreate()
-{
-    GameEngineWindow::GetInst().CreateGameWindow(nullptr, "GameWindow");
-    GameEngineWindow::GetInst().ShowGameWindow();
-    GameEngineWindow::GetInst().MessageLoop(EngineInit, EngineLoop);
-}
-
-void GameEngine::EngineInit()
-{
-    // 여기서 윈도우의 크기가 결정될것 이므로
-    UserContents_->GameInit();
-
-    // 백버퍼를 만들어 낸다.
-    WindowMainImage_ = GameEngineImageManager::GetInst()->Create("WindowMain", GameEngineWindow::GetHDC());
-    BackBufferImage_ = GameEngineImageManager::GetInst()->Create("BackBuffer", GameEngineWindow::GetScale());
-
-}
-void GameEngine::EngineLoop()
-{
-    GameEngineTime::GetInst()->Update();
-
-    // 엔진수준에서 매 프레임마다 체크하고 싶은거
-    UserContents_->GameLoop();
-
-    // 시점함수라고 하는데
-    // 어느 시점
-    if (nullptr != NextLevel_)
-    {
-        if (nullptr != CurrentLevel_)
-        {
-            CurrentLevel_->LevelChangeEnd();
-        }
-
-        CurrentLevel_ = NextLevel_;
-
-        if (nullptr != CurrentLevel_)
-        {
-            CurrentLevel_->LevelChangeStart();
-        }
-
-        NextLevel_ = nullptr;
-        GameEngineTime::GetInst()->Reset();
-    }
-
-    if (nullptr == CurrentLevel_)
-    {
-        MsgBoxAssert("Level is nullptr => GameEngine Loop Error");
-    }
-
-    GameEngineInput::GetInst()->Update();
-
-    // 레벨수준 시간제한이 있는 게임이라면
-    // 매 프레임마다 시간을 체크해야하는데 그런일을 
-    CurrentLevel_->Update();
-    CurrentLevel_->ActorUpdate();
-    CurrentLevel_->ActorRender();
-    WindowMainImage_->BitCopy(BackBufferImage_);
-
-    CurrentLevel_->ActorRelease();
-
-}
-
-void GameEngine::EngineEnd()
-{
-    UserContents_->GameEnd();
-
-    std::map<std::string, GameEngineLevel*>::iterator StartIter = AllLevel_.begin();
-    std::map<std::string, GameEngineLevel*>::iterator EndIter = AllLevel_.end();
-
-    for (; StartIter != EndIter; ++StartIter)
-    {
-        if (nullptr == StartIter->second)
-        {
-            continue;
-        }
-        delete StartIter->second;
-    }
+	inline float4 GetPosition()
+	{
+		return Position_;
+	}
+	inline float4 GetScale()
+	{
+		return Scale_;
+	}
 
 
-    GameEngineImageManager::Destroy();
-    GameEngineInput::Destroy();
-    GameEngineTime::Destroy();
-    GameEngineWindow::Destroy();
-}
+	inline void SetMove(float4 _Value)
+	{
+		Position_ += _Value;
+	}
 
-void GameEngine::ChangeLevel(const std::string& _Name)
-{
-    std::map<std::string, GameEngineLevel*>::iterator FindIter = AllLevel_.find(_Name);
+	inline void SetPosition(float4 _Value)
+	{
+		Position_ = _Value;
+	}
+	inline void SetScale(float4 _Value)
+	{
+		Scale_ = _Value;
+	}
 
-    if (AllLevel_.end() == FindIter)
-    {
-        MsgBoxAssert("Level Find Error");
-        return;
-    }
-    NextLevel_ = FindIter->second;
-}
+
+protected:
+	// 시작할때 뭔가를 하고 싶은데 생성자에서는 절대로 못할 부분들을 처리한다.
+	virtual void Start() = 0;
+	// 지속적으로 게임이 실행될때 호출된다.
+	virtual void Update() {}
+	// 지속적으로 게임이 실행될때 호출된다.
+	virtual void Render() {}
+
+	void DebugRectRender();
+
+private:
+	GameEngineLevel* Level_;
+	float4 Position_;
+	float4 Scale_;
+
+	// 나를 만들어준 레벨이야.
+	inline void SetLevel(GameEngineLevel* _Level)
+	{
+		Level_ = _Level;
+	}
+
+	/////////////////////////////////////////////////// Render
+public:
+	// 벡터의 값
+	// 가장 빠를겁니다.
+	// 디폴트 인자는 선언에서만 지정 가능합니다.
+	GameEngineRenderer* CreateRenderer(const std::string& _Image, RenderPivot _PivotType = RenderPivot::CENTER, const float4& _PivotPos = { 0,0 });
+
+	GameEngineRenderer* CreateRendererToScale(const std::string& _Image, const float4& _Scale, RenderPivot _PivotType = RenderPivot::CENTER, const float4& _PivotPos = { 0,0 });
+
+	void Renderering();
+
+private:
+	// 이터레이터
+	std::list<GameEngineRenderer*>::iterator StartRenderIter;
+	std::list<GameEngineRenderer*>::iterator EndRenderIter;
+
+	std::list<GameEngineRenderer*> RenderList_;
+};
+
