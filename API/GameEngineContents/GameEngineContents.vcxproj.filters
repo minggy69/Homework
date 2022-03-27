@@ -49,6 +49,9 @@
     <ClInclude Include="BotUI.h">
       <Filter>Play\Global</Filter>
     </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Play\Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EndingCredit.cpp">
@@ -80,6 +83,9 @@
       <Filter>Play\Global</Filter>
     </ClCompile>
     <ClCompile Include="BotUI.cpp">
+      <Filter>Play\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
       <Filter>Play\Global</Filter>
     </ClCompile>
   </ItemGroup>
