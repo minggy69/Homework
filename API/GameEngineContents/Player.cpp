@@ -24,8 +24,8 @@ void Player::Start()
 	SetPosition(GameEngineWindow::GetScale().Half());
 	SetScale({ 100, 100 });
 
-	GameEngineRenderer* Render = CreateRenderer("Right_Beam_Kirby.bmp");
-	Render->SetIndex(10);
+	GameEngineRenderer* Render = CreateRendererToScale("Right_Beam_Kirby.bmp", { 300, 300 });
+	// Render->SetIndex(10);
 
 
 	// CreateRendererToScale("hpbar.bmp", float4(300.0f, 20.0f), RenderPivot::CENTER, float4(0.0f, -100.0f));
