@@ -22,10 +22,11 @@ Player::~Player()
 void Player::Start()
 {
 	SetPosition(GameEngineWindow::GetScale().Half());
-	SetScale({ 100, 100 });
+	SetScale({ 5, 5 });
 
-	GameEngineRenderer* Render = CreateRendererToScale("Right_Beam_Kirby.bmp", { 300, 300 });
-	// Render->SetIndex(10);
+	GameEngineRenderer* Render = CreateRendererToScale("Genesis 32X SCD - Puyo Puyo Tsu JPN - Puyo.bmp.bmp", { 300, 300 });
+	Render->SetIndex(10);
+	Render->SetPivotType(RenderPivot::BOT);
 
 
 	// CreateRendererToScale("hpbar.bmp", float4(300.0f, 20.0f), RenderPivot::CENTER, float4(0.0f, -100.0f));
@@ -84,5 +85,5 @@ void Player::Update()
 // 랜더러가 다 돌아가고 랜더링이 됩니다.
 void Player::Render()
 {
-
+	DebugRectRender();
 }

@@ -22,9 +22,9 @@ void Puyopuyo2::GameInit()
 
 	// 현재 디렉토리
 	GameEngineDirectory ResourcesDir;
-	ResourcesDir.MoveParent("API");
-	ResourcesDir.Move("Resources");
-	ResourcesDir.Move("Image");
+	ResourcesDir.MoveParent("API_Resources");
+	ResourcesDir.Move("image");
+	ResourcesDir.Move("playlevel");
 
 	// 폴더안에 모든 이미지 파일을 찾는다.
 	std::vector<GameEngineFile> AllImageFileList = ResourcesDir.GetAllFile("Bmp");
@@ -35,7 +35,7 @@ void Puyopuyo2::GameInit()
 	}
 
 
-	GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("Right_Beam_Kirby.bmp");
+	GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("Genesis 32X SCD - Puyo Puyo Tsu JPN - Puyo");
 	Image->Cut({ 256, 256 });
 
 	// 
