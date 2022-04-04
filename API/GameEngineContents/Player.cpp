@@ -18,15 +18,80 @@ Player::~Player()
 {
 }
 
+// 아무키도 눌리지 않았다면 false
+// 아무키든 눌렸다면 true
+bool Player::IsMoveKey()
+{
+	if (false == GameEngineInput::GetInst()->IsDown("MoveLeft") &&
+		false == GameEngineInput::GetInst()->IsDown("MoveRight") &&
+		false == GameEngineInput::GetInst()->IsDown("MoveUp") &&
+		false == GameEngineInput::GetInst()->IsDown("MoveDown"))
+	{
+		return false;
+	}
+
+	return true;
+}
+
+void Player::ChangeState(PlayerState _State)
+{
+	if (CurState_ != _State)
+	{
+		switch (_State)
+		{
+		case Idle:
+			IdleStart();
+			break;
+		case Attck:
+			AttackStart();
+			break;
+		case Move:
+			MoveStart();
+			break;
+		case Max:
+			break;
+		default:
+			break;
+		}
+	}
+
+	CurState_ = _State;
+}
+
+void Player::StateUpdate()
+{
+	switch (CurState_)
+	{
+	case Idle:
+		IdleUpdate();
+		break;
+	case Attck:
+		AttackUpdate();
+		break;
+	case Move:
+		MoveUpdate();
+		break;
+	case Max:
+		break;
+	default:
+		break;
+	}
+}
+
 
 void Player::Start()
 {
 	SetPosition(GameEngineWindow::GetScale().Half());
 	SetScale({ 5, 5 });
 
-	GameEngineRenderer* Render = CreateRendererToScale("Genesis 32X SCD - Puyo Puyo Tsu JPN - Puyo.bmp.bmp", { 300, 300 });
-	Render->SetIndex(10);
-	Render->SetPivotType(RenderPivot::BOT);
+	GameEngineRenderer* Render = CreateRendererToScale("Right_Beam_Kirby.bmp", float4(500, 500));
+	Render->SetIndex(10, float4(500, 500));
+	// Render->SetPivotType(RenderPivot::BOT);
+
+	Render1 = CreateRendererToScale("Idle.bmp", { 300, 300 }, -100);
+	Render1->SetPivot({ 100.0f, 0.0f });
+
+
 
 
 	// CreateRendererToScale("hpbar.bmp", float4(300.0f, 20.0f), RenderPivot::CENTER, float4(0.0f, -100.0f));
@@ -46,32 +111,11 @@ void Player::Start()
 
 void Player::Update()
 {
-	if (true == GameEngineInput::GetInst()->IsPress("MoveRight"))
-	{
-		// 1.0F * 0.001101F
-		SetMove(float4::RIGHT * GameEngineTime::GetDeltaTime() * Speed_);
-	}
-	if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
-	{
-		SetMove(float4::LEFT * GameEngineTime::GetDeltaTime() * Speed_);
-	}
+	// 공통함수
 
+	// State
 
-	if (true == GameEngineInput::GetInst()->IsPress("MoveUp"))
-	{
-		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * Speed_);
-	}
-
-	if (true == GameEngineInput::GetInst()->IsPress("MoveDown"))
-	{
-		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_);
-	}
-
-	if (true == GameEngineInput::GetInst()->IsDown("Fire"))
-	{
-		Bullet* Ptr = GetLevel()->CreateActor<Bullet>();
-		Ptr->SetPosition(GetPosition());
-	}
+	StateUpdate();
 
 
 	// 내가 키를 눌렀다면 움직여라.

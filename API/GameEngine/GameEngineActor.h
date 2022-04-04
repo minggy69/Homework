@@ -6,6 +6,10 @@
 #include "GameEngineEnum.h"
 #include <list>
 
+// 
+
+// #define RENDERORDERMAX 2147483647
+
 // 설명 :
 class GameEngineLevel;
 class GameEngineRenderer;
@@ -87,15 +91,13 @@ private:
 	/////////////////////////////////////////////////// Render
 public:
 	// 벡터의 값
-	GameEngineRenderer* CreateRenderer(RenderPivot _PivotType = RenderPivot::CENTER, const float4& _PivotPos = { 0,0 });
+	GameEngineRenderer* CreateRenderer(int _Order = static_cast<int>(EngineMax::RENDERORDERMAX), RenderPivot _PivotType = RenderPivot::CENTER, const float4& _PivotPos = { 0,0 });
 
 	// 가장 빠를겁니다.
 	// 디폴트 인자는 선언에서만 지정 가능합니다.
-	GameEngineRenderer* CreateRenderer(const std::string& _Image, RenderPivot _PivotType = RenderPivot::CENTER, const float4& _PivotPos = { 0,0 });
+	GameEngineRenderer* CreateRenderer(const std::string& _Image, int _Order = static_cast<int>(EngineMax::RENDERORDERMAX), RenderPivot _PivotType = RenderPivot::CENTER, const float4& _PivotPos = { 0,0 });
 
-	GameEngineRenderer* CreateRendererToScale(const std::string& _Image, const float4& _Scale, RenderPivot _PivotType = RenderPivot::CENTER, const float4& _PivotPos = { 0,0 });
-
-	void Renderering();
+	GameEngineRenderer* CreateRendererToScale(const std::string& _Image, const float4& _Scale, int _Order = static_cast<int>(EngineMax::RENDERORDERMAX), RenderPivot _PivotType = RenderPivot::CENTER, const float4& _PivotPos = { 0,0 });
 
 private:
 	// 이터레이터
@@ -109,8 +111,6 @@ private:
 
 public:
 	GameEngineCollision* CreateCollision(const std::string& _GroupName, float4 _Scale, float4 _Pivot = { 0, 0 });
-
-	// 
 
 private:
 	// 이터레이터

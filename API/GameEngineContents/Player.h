@@ -1,6 +1,21 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
 
+// 어떠한 객체는 1번에 1개의 상태만이 존재한다.
+// 플레이어는 1번에 1개의 함수밖에 실행할수 없다.
+
+// if 플레이어가 공격 중이라면
+//    if 플레이어가 이동중이 아니라면
+//       if
+
+enum PlayerState
+{
+	Idle,
+	Attck,
+	Move,
+	Max,
+};
+
 // 설명 :
 class Player : public GameEngineActor
 {
@@ -23,5 +38,28 @@ private:
 	void Start() override;
 	void Update() override;
 	void Render() override;
+
+
+
+private:
+	PlayerState CurState_;
+	GameEngineRenderer* Render1;
+
+	bool IsMoveKey();
+	void KeyMove();
+
+public:
+	void ChangeState(PlayerState _State);
+	void StateUpdate();
+
+private:
+	// FSM에서 금기가 있습니다.
+	void IdleUpdate();
+	void AttackUpdate();
+	void MoveUpdate();
+
+	void IdleStart();
+	void AttackStart();
+	void MoveStart();
 };
 
