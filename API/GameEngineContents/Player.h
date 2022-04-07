@@ -34,6 +34,7 @@ protected:
 
 private:
 	float Speed_;
+	float AccSpeed_;
 
 	void Start() override;
 	void Update() override;
@@ -42,6 +43,8 @@ private:
 
 
 private:
+	float4 MoveDir;
+
 	PlayerState CurState_;
 	GameEngineRenderer* Render1;
 

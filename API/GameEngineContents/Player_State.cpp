@@ -13,7 +13,6 @@ void Player::IdleUpdate()
 {
 	if (true == IsMoveKey())
 	{
-		Render1->SetOrder(1000);
 		ChangeState(PlayerState::Move);
 		return;
 	}
@@ -28,39 +27,72 @@ void Player::IdleUpdate()
 
 void Player::AttackUpdate()
 {
-	if (true == Render1->IsEndAnimation())
-	{
-		ChangeState(PlayerState::Idle);
-	}
+	SetMove(MoveDir * GameEngineTime::GetDeltaTime());
+
+	MoveDir += float4::DOWN * GameEngineTime::GetDeltaTime() * 1000.0f;
+
+	//if (MoveDir.y)
+	//{
+
+	//}
+
+
+
 }
 
 void Player::MoveUpdate()
 {
 
+	if (true == GameEngineInput::GetInst()->IsDown("Fire"))
+	{
+		ChangeState(PlayerState::Attck);
+		return;
+	}
+
 	if (true == GameEngineInput::GetInst()->IsPress("MoveRight"))
 	{
-		SetMove(float4::RIGHT * GameEngineTime::GetDeltaTime() * Speed_);
+		// °¡¼Ó·Â
+		MoveDir += float4::RIGHT * GameEngineTime::GetDeltaTime() * AccSpeed_;
 	}
 	if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
 	{
-		SetMove(float4::LEFT * GameEngineTime::GetDeltaTime() * Speed_);
+		MoveDir += float4::LEFT * GameEngineTime::GetDeltaTime() * AccSpeed_;
 	}
 	if (true == GameEngineInput::GetInst()->IsPress("MoveUp"))
 	{
-		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * Speed_);
+		MoveDir += float4::UP * GameEngineTime::GetDeltaTime() * AccSpeed_;
 	}
 
 	if (true == GameEngineInput::GetInst()->IsPress("MoveDown"))
 	{
-		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_);
+		MoveDir += float4::DOWN * GameEngineTime::GetDeltaTime() * AccSpeed_;
 	}
 
-	if (true == GameEngineInput::GetInst()->IsDown("Fire"))
+	// MoveDir*= Speed_;
+
+	if (0.3f <= MoveDir.Len2D())
 	{
-		ChangeState(PlayerState::Attck);
-		//Bullet* Ptr = GetLevel()->CreateActor<Bullet>();
-		//Ptr->SetPosition(GetPosition());
+		MoveDir.Range2D(0.3f);
 	}
+
+	if (false == IsMoveKey())
+	{
+		MoveDir += -MoveDir * GameEngineTime::GetDeltaTime();
+
+		if (0.005f >= MoveDir.Len2D())
+		{
+			MoveDir = float4::ZERO;
+			return;
+		}
+
+		SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+		return;
+	}
+
+
+
+	SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+
 
 }
 
@@ -76,7 +108,7 @@ void Player::IdleStart()
 
 void Player::AttackStart()
 {
-
+	MoveDir = float4::UP * 500.0f;
 }
 
 void Player::MoveStart()

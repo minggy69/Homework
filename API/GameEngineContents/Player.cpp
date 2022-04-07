@@ -10,7 +10,9 @@
 #include "Bullet.h" // 총알을 만들고 싶다.
 
 Player::Player()
-	: Speed_(100.0f)
+	: Speed_(500.0f)
+	, AccSpeed_(500.0f)
+	, MoveDir(float4::ZERO)
 {
 }
 
@@ -22,10 +24,10 @@ Player::~Player()
 // 아무키든 눌렸다면 true
 bool Player::IsMoveKey()
 {
-	if (false == GameEngineInput::GetInst()->IsDown("MoveLeft") &&
-		false == GameEngineInput::GetInst()->IsDown("MoveRight") &&
-		false == GameEngineInput::GetInst()->IsDown("MoveUp") &&
-		false == GameEngineInput::GetInst()->IsDown("MoveDown"))
+	if (false == GameEngineInput::GetInst()->IsPress("MoveLeft") &&
+		false == GameEngineInput::GetInst()->IsPress("MoveRight") &&
+		false == GameEngineInput::GetInst()->IsPress("MoveUp") &&
+		false == GameEngineInput::GetInst()->IsPress("MoveDown"))
 	{
 		return false;
 	}
@@ -85,11 +87,11 @@ void Player::Start()
 	SetScale({ 5, 5 });
 
 	GameEngineRenderer* Render = CreateRendererToScale("Right_Beam_Kirby.bmp", float4(500, 500));
-	Render->SetIndex(10, float4(500, 500));
+	Render->SetIndex(10, float4(100, 100));
 	// Render->SetPivotType(RenderPivot::BOT);
 
-	Render1 = CreateRendererToScale("Idle.bmp", { 300, 300 }, -100);
-	Render1->SetPivot({ 100.0f, 0.0f });
+	//Render1 = CreateRendererToScale("Idle.bmp", { 300, 300 }, -100);
+	//Render1->SetPivot({100.0f, 0.0f});
 
 
 
