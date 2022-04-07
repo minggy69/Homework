@@ -28,7 +28,10 @@ void Player::IdleUpdate()
 
 void Player::AttackUpdate()
 {
-
+	if (true == Render1->IsEndAnimation())
+	{
+		ChangeState(PlayerState::Idle);
+	}
 }
 
 void Player::MoveUpdate()

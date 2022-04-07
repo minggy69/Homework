@@ -52,6 +52,7 @@
     <ClInclude Include="GameEngineFolderImage.h">
       <Filter>Resources</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineRendererTileMap.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngine.cpp" />
@@ -82,5 +83,6 @@
     <ClCompile Include="GameEngineFolderImage.cpp">
       <Filter>Resources</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineRendererTileMap.cpp" />
   </ItemGroup>
 </Project>

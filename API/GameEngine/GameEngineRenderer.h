@@ -100,7 +100,7 @@ private:
 	//// Animation
 	//////////////////////////////////////////////////
 private:
-	class FrameAnimation
+	class FrameAnimation : public GameEngineNameObject
 	{
 	public:
 		GameEngineRenderer* Renderer_;
@@ -113,6 +113,7 @@ private:
 		float CurrentInterTime_;
 		float InterTime_;
 		bool Loop_ = false;
+		bool IsEnd;
 
 	public:
 		FrameAnimation()
@@ -133,6 +134,7 @@ private:
 		// 처음 재생상태로 만드는것.
 		void Reset()
 		{
+			IsEnd = false;
 			CurrentFrame_ = StartFrame_;
 			CurrentInterTime_ = InterTime_;
 
@@ -147,6 +149,10 @@ public:
 
 	// 애니메이션을 재생한다.
 	void ChangeAnimation(const std::string& _Name);
+
+	bool IsEndAnimation();
+
+	bool IsAnimationName(const std::string& _Name);
 
 private:
 	std::map<std::string, FrameAnimation> Animations_;
