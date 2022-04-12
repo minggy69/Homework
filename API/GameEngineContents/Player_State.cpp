@@ -108,6 +108,8 @@ void Player::IdleStart()
 
 void Player::AttackStart()
 {
+	// GameEngineTime::SetTimeScale(GameMonster::);
+
 	MoveDir = float4::UP * 500.0f;
 }
 

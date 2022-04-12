@@ -34,9 +34,6 @@
     <ClInclude Include="GameEngineImage.h">
       <Filter>Resources</Filter>
     </ClInclude>
-    <ClInclude Include="GameEngineSound.h">
-      <Filter>Resources</Filter>
-    </ClInclude>
     <ClInclude Include="GameEngineEnum.h">
       <Filter>Global</Filter>
     </ClInclude>
@@ -66,9 +63,6 @@
       <Filter>Resources\Manager</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineImage.cpp">
-      <Filter>Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="GameEngineSound.cpp">
       <Filter>Resources</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineRenderer.cpp">

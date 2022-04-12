@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
+#include <GameEngineBase/GameEngineSound.h>
 
 // 어떠한 객체는 1번에 1개의 상태만이 존재한다.
 // 플레이어는 1번에 1개의 함수밖에 실행할수 없다.
@@ -20,6 +21,8 @@ enum PlayerState
 class Player : public GameEngineActor
 {
 public:
+
+
 	// constrcuter destructer
 	Player();
 	~Player();
@@ -43,6 +46,8 @@ private:
 
 
 private:
+	static float4 NextLevelPosition;
+
 	float4 MoveDir;
 
 	PlayerState CurState_;

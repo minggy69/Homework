@@ -6,6 +6,7 @@
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEngineBase/GameEngineFile.h>
 #include <GameEngine/GameEngineImageManager.h>
+#include <GameEngineBase/GameEngineSound.h>
 
 Puyopuyo2::Puyopuyo2()
 {
@@ -21,17 +22,36 @@ void Puyopuyo2::GameInit()
 
 
 	// 현재 디렉토리
-	GameEngineDirectory ResourcesDir;
-	ResourcesDir.MoveParent("API");
-	ResourcesDir.Move("Resources");
-	ResourcesDir.Move("Image");
-
-	// 폴더안에 모든 이미지 파일을 찾는다.
-	std::vector<GameEngineFile> AllImageFileList = ResourcesDir.GetAllFile("Bmp");
-
-	for (size_t i = 0; i < AllImageFileList.size(); i++)
 	{
-		GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+		GameEngineDirectory ResourcesDir;
+		ResourcesDir.MoveParent("API");
+		ResourcesDir.Move("Resources");
+		ResourcesDir.Move("Image");
+
+		// 폴더안에 모든 이미지 파일을 찾는다.
+		std::vector<GameEngineFile> AllImageFileList = ResourcesDir.GetAllFile("Bmp");
+
+		for (size_t i = 0; i < AllImageFileList.size(); i++)
+		{
+			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+		}
+	}
+
+	{
+
+		GameEngineDirectory ResourcesDir;
+		ResourcesDir.MoveParent("API");
+		ResourcesDir.Move("Resources");
+		ResourcesDir.Move("Sound");
+
+		// 폴더안에 모든 이미지 파일을 찾는다.
+		std::vector<GameEngineFile> AllImageFileList = ResourcesDir.GetAllFile();
+
+		for (size_t i = 0; i < AllImageFileList.size(); i++)
+		{
+			GameEngineSound::LoadRes(AllImageFileList[i].GetFullPath());
+		}
+
 	}
 
 
