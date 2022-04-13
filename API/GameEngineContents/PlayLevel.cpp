@@ -28,18 +28,20 @@ void PlayLevel::Loading()
 
 void PlayLevel::Update()
 {
-	Time -= GameEngineTime::GetDeltaTime();
+	//Time -= GameEngineTime::GetDeltaTime();
 
-	if (0 >= Time)
-	{
-		BgmPlayer.Stop();
-	}
+	//if (0 >= Time)
+	//{
+	//	BgmPlayer.Stop();
+	//}
 }
 void PlayLevel::LevelChangeStart()
 {
 	// Player->SetPosition();
 
-	BgmPlayer = GameEngineSound::SoundPlayControl("BGM.MP3");
+	// BgmPlayer = GameEngineSound::SoundPlayControl("BGM.MP3");
+
+	GameEngineSound::SoundPlayOneShot("vo_shk.mp3");
 	Time = 5.0f;
 
 }
