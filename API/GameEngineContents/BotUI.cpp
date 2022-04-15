@@ -1,4 +1,5 @@
 #include "BotUI.h"
+#include "Player.h"
 
 BotUI::BotUI()
 {
@@ -17,5 +18,9 @@ void BotUI::Start()
 
 void BotUI::Render()
 {
+	Player* MainPlayer = GetLevel()->FindActor<Player>("MainPlayer");
+
+	// Player::MainPlayer->SetPosition();
+
 	DebugRectRender();
 }

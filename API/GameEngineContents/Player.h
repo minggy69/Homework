@@ -21,7 +21,8 @@ enum PlayerState
 class Player : public GameEngineActor
 {
 public:
-
+	static Player* MainPlayer;
+	// static std::vector<InventoryItem> ;
 
 	// constrcuter destructer
 	Player();
@@ -43,7 +44,7 @@ private:
 	void Update() override;
 	void Render() override;
 
-
+	void LevelChangeStart() override;
 
 private:
 	static float4 NextLevelPosition;

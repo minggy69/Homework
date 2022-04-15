@@ -9,6 +9,9 @@
 #include <GameEngine/GameEngineLevel.h> // 레벨을 통해서
 #include "Bullet.h" // 총알을 만들고 싶다.
 
+Player* Player::MainPlayer = nullptr;
+
+
 Player::Player()
 	: Speed_(500.0f)
 	, AccSpeed_(500.0f)
@@ -110,6 +113,8 @@ void Player::Start()
 		GameEngineInput::GetInst()->CreateKey("Fire", VK_SPACE);
 		// VK_LBUTTON;
 	}
+
+	LevelRegist("MainPlayer");
 }
 
 void Player::Update()
@@ -133,4 +138,9 @@ void Player::Update()
 void Player::Render()
 {
 	DebugRectRender();
+}
+
+void Player::LevelChangeStart()
+{
+	MainPlayer = this;
 }
